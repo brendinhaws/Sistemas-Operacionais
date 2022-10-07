@@ -1,0 +1,289 @@
+#include <stdio.h>
+#include <pthread.h>
+
+void * print1(void* p);
+void * print2(void* p);
+void * print3(void* p);
+void * print4(void* p);
+void * print5(void* p);
+void * print6(void* p);
+void * print7(void* p);
+void * print8(void* p);
+
+long long int const val = 210017733 * 10000LL;
+
+typedef struct{
+
+    long long int valor;
+    long long int *array;
+
+} Estrutura;
+
+int main(){
+
+    pthread_t t0, t1, t2, t3, t4, t5, t6, t7;
+
+    long long int val1 = val / 8;
+    long long int val2 = 2 * val1;
+    long long int val3 = 3 * val1;
+    long long int val4 = 4 * val1;
+    long long int val5 = 5 * val1;
+    long long int val6 = 6 * val1;
+    long long int val7 = 7 * val1;
+
+    long long int arr1[70] = {0};
+    long long int arr2[70] = {0};
+    long long int arr3[70] = {0};
+    long long int arr4[70] = {0};
+    long long int arr5[70] = {0};
+    long long int arr6[70] = {0};
+    long long int arr7[70] = {0};
+    long long int arr8[70] = {0};
+
+    Estrutura obj1 = {
+        val1, arr1
+    };
+
+    Estrutura obj2 = {
+        val2, arr2
+    };
+
+    Estrutura obj3 = {
+        val3, arr3
+    };
+
+    Estrutura obj4 = {
+        val4, arr4
+    };
+
+    Estrutura obj5 = {
+        val5, arr5
+    };
+
+    Estrutura obj6 = {
+        val6, arr6
+    };
+
+    Estrutura obj7 = {
+        val7, arr7
+    };
+
+    Estrutura obj8 = {
+        val, arr8
+    };
+
+    pthread_create(&t0, NULL, print1, (void *) &obj1);
+    pthread_create(&t1, NULL, print2, (void *) &obj2);
+    pthread_create(&t2, NULL, print3, (void *) &obj3);
+    pthread_create(&t3, NULL, print4, (void *) &obj4);
+    pthread_create(&t4, NULL, print5, (void *) &obj5);
+    pthread_create(&t5, NULL, print6, (void *) &obj6);
+    pthread_create(&t6, NULL, print7, (void *) &obj7);
+    pthread_create(&t7, NULL, print8, (void *) &obj8);
+    pthread_join(t0, NULL);
+    pthread_join(t1, NULL);
+    pthread_join(t2, NULL);
+    pthread_join(t3, NULL);
+    pthread_join(t4, NULL);
+    pthread_join(t5, NULL);
+    pthread_join(t6, NULL);
+    pthread_join(t7, NULL);
+
+    for(int i = 0; i < 100; i++){
+        if(obj1.array[i] == 0){
+            break;
+        }
+        printf("%lld ", obj1.array[i]);
+    }
+
+    for(int i = 0; i < 100; i++){
+        if(obj2.array[i] == 0){
+            break;
+        }
+        printf("%lld ", obj2.array[i]);
+    }
+
+    for(int i = 0; i < 100; i++){
+        if(obj3.array[i] == 0){
+            break;
+        }
+        printf("%lld ", obj3.array[i]);
+    }
+
+    for(int i = 0; i < 100; i++){
+        if(obj4.array[i] == 0){
+            break;
+        }
+        printf("%lld ", obj4.array[i]);
+    }
+   
+    for(int i = 0; i < 100; i++){
+        if(obj5.array[i] == 0){
+            break;
+        }
+        printf("%lld ", obj5.array[i]);
+    }
+
+    for(int i = 0; i < 100; i++){
+        if(obj6.array[i] == 0){
+            break;
+        }
+        printf("%lld ", obj6.array[i]);
+    }
+
+    for(int i = 0; i < 100; i++){
+        if(obj7.array[i] == 0){
+            break;
+        }
+        printf("%lld ", obj7.array[i]);
+    }
+
+    for(int i = 0; i < 100; i++){
+        if(obj8.array[i] == 0){
+            break;
+        }
+        printf("%lld ", obj8.array[i]);
+    }
+
+    return 0;
+}
+
+void * print1(void* p){
+
+    Estrutura *a = (Estrutura *) p;
+
+    int x = 0;
+
+    for(long long int i = 1; i <= a->valor; i++){
+        if(val % i == 0){
+            a->array[x] = i;
+            x++;
+        }
+    }
+
+    return NULL;
+}
+
+void * print2(void* p){
+
+    Estrutura *b = (Estrutura *) p;
+   
+    int x = 0;
+
+    for(long long int i = ((val / 8) + 1); i <= b->valor; i++){
+        if(val % i == 0){
+            b->array[x] = i;
+            x++;
+        }
+    }
+
+    return NULL;
+}
+
+void * print3(void* p){
+
+    Estrutura *c = (Estrutura *) p;
+
+    int x = 0;
+
+    long long int val1 = val / 8;
+
+    for(long long int i = ((2 * val1) + 1); i <= c->valor; i++){
+        if(val % i == 0){
+            c->array[x] = i;
+            x++;
+        }
+    }
+
+    return NULL;
+}
+
+void * print4(void* p){
+
+    Estrutura *d = (Estrutura *) p;
+   
+    int x = 0;
+
+    long long int val1 = val / 8;
+
+    for(long long int i = ((3 * val1) + 1); i <= d->valor; i++){
+        if(val % i == 0){
+            d->array[x] = i;
+            x++;
+        }
+    }
+
+    return NULL;
+}
+
+void * print5(void* p){
+
+    Estrutura *e = (Estrutura *) p;
+
+    int x = 0;
+
+    long long int val1 = val / 8;
+
+    for(long long int i = ((4 * val1) + 1); i <= e->valor; i++){
+        if(val % i == 0){
+            e->array[x] = i;
+            x++;
+        }
+    }
+
+    return NULL;
+}
+
+void * print6(void* p){
+
+    Estrutura *f = (Estrutura *) p;
+   
+    int x = 0;
+
+    long long int val1 = val / 8;
+
+    for(long long int i = ((5 * val1) + 1); i <= f->valor; i++){
+        if(val % i == 0){
+            f->array[x] = i;
+            x++;
+        }
+    }
+
+    return NULL;
+}
+
+void * print7(void* p){
+
+    Estrutura *g = (Estrutura *) p;
+
+    int x = 0;
+
+    long long int val1 = val / 8;
+
+    for(long long int i = ((6 * val1) + 1); i <= g->valor; i++){
+        if(val % i == 0){
+            g->array[x] = i;
+            x++;
+        }
+    }
+
+    return NULL;
+}
+
+void * print8(void* p){
+
+    Estrutura *h = (Estrutura *) p;
+   
+    int x = 0;
+
+    long long int val1 = val / 8;
+
+    for(long long int i = ((7 * val1) + 1); i <= h->valor; i++){
+        if(val % i == 0){
+            h->array[x] = i;
+            x++;
+        }
+    }
+
+    return NULL;
+}
