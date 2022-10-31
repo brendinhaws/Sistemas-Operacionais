@@ -1,12 +1,10 @@
-//Programa que multiplica por 10.000 o RA inserido e imprime os divisores do cálculo em ordem crescente utilizando 2 Threads.
-
 #include <stdio.h>
 #include <pthread.h>
 
 void * print1(void* p);
 void * print2(void* p);
 
-long long int const val = 2100177 * 10LL;
+long long int const val = 210017733 * 10000LL;
 
 typedef struct{
 
