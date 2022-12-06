@@ -1,0 +1,107 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+float raiz_quadrada_de( float numero );
+float raiz_quadrada_deRA( float numero );
+
+void sim()
+{
+    float numero;
+    printf("Insira um n%cmero real n%co negativo: ", 163, 198);
+    scanf("%f", &numero);
+    printf("\nRaiz de %f = %.12f\n", numero, raiz_quadrada_de(numero));
+    printf("\n............................................\n");
+}
+
+void nao()
+{
+   int N = 210017733; /* inteiro positivo dado (a ser lido) */ 
+    int soma; /* soma dos dígitos de N */
+    int digito; /* para armazenar cada digito de N */
+
+    printf("\nRA = 210017733\n");  
+    printf("\nN = 2 + 1 + 0 + 0 + 1 + 7 + 7 + 3 + 3\n");
+    soma = 0; /* Inicializacao da soma */
+ 
+    while (N > 0){
+        digito =  N % 10; /* o digito mais à direita de N é obtido */
+        soma = soma + digito;
+        N = N / 10;  /* N passa a ser o N anterior sem o dígito mais à direita */
+    }
+  
+    printf("\nN = %d\n\n", soma);
+
+    int numero = soma;
+
+    printf("Raiz aproximada de %d = %.10f\n", soma, raiz_quadrada_deRA(numero));
+    printf("\n............................................\n");
+}
+
+void sair()
+{
+    printf("J%c vai?\nEspere!\nN%c%c...\n", 160, 198, 198);
+}
+
+
+int main()
+{
+    int continuar=1;
+
+    do
+    {
+        printf("\nRaiz Quadrada\n");
+        printf("\nDeseja inserir e calcular um n%cmero real n%co negativo?\n", 163, 198);
+        printf("1. Sim\n");
+        printf("2. N%co\n", 198);
+        printf("0. Sair\n");
+
+        scanf("%d", &continuar);
+        system("cls || clear");
+
+        switch(continuar)
+        {
+            case 1:
+                sim();
+                break;
+
+            case 2:
+                nao();
+                break;
+
+            case 0:
+                sair();
+                break;
+
+            default:
+                printf("Digite uma opcao valida\n");
+        }
+    } while(continuar);
+}
+
+float raiz_quadrada_de( float numero ){	
+    float r = 1;
+	/*: Menor raiz exata aproximada de n */
+	
+	while( numero > (r * r) ) r += 1E+0;
+	/*: Calcular a raiz inteira aproximada */
+	
+	while( numero < (r * r) ) r -= 1E-6;
+	/*: Cacular a raiz a fração aproximada */
+	
+	return r;
+	/*: Retorna raiz de n */
+}
+
+float raiz_quadrada_deRA( float numero )
+{	float r = 1;
+	/*: Menor raiz exata aproximada de n */
+	
+	while( numero > (r * r) ) r += 1E+0;
+	/*: Calcular a raiz inteira aproximada */
+	
+	while( numero < (r * r) ) r -= 1E-6;
+	/*: Cacular a raiz a fração aproximada */
+	
+	return r;
+	/*: Retorna raiz de n */
+}
