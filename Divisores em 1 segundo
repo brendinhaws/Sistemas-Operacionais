@@ -1,0 +1,86 @@
+/*
+    Programa       : RecuperativaALP.c
+    Versão         : 
+    Descrição      : Imprime e analisa o desempenho de tempo da ordenação dos divisores do RA multiplicado por 10.000 usando Benchmark.
+    Desenvolvedora : Brenda Silveira Pereira
+    Criado em      : 05/12/2022
+    Atualizado em  : 05/12/2022
+    Comentários    : Utiliza o "Benchmark" para imprimir o tempo de desenpenho e ordenação dos divisores em menos de 1 segundo.
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+#include <time.h>
+
+void * print(void* p);
+double benchmark(int flag)
+{
+    static clock_t value = 0;
+    return (flag) ? value = clock() : (double)(clock() - value) / CLOCKS_PER_SEC;
+}
+
+long long int const val = 210017733 * 10000LL;
+long long int const num = ((val % 2 == 0) ? val / 2 : (val-1) /2); //last divisor of value
+
+typedef struct{
+    long long int value, *array, *s;
+} Container;
+
+int main(){
+    long long int val1 = val;
+    long long int arr1[300] = {0};
+    long long int s1[300];
+    double timing;
+    srand(time(0));
+
+    printf("\nThe divisors of 2100177330000 are:\n\n");
+
+    Container obj1 = {
+        val1, arr1, s1
+    };
+
+    benchmark(1);
+
+    print((void *) &obj1);
+    timing = benchmark(0);
+   
+    for(int i = 0; i < 1000; i++){
+        if(obj1.array[i] == 0){
+            break;
+        }
+        printf("%lld ", obj1.array[i]);
+    }
+    printf("%lld\n",val);
+    printf("\nTIME: %.2lf seconds\n\n", timing);
+}
+
+void * print(void* p){
+
+    Container *a = (Container *) p;
+
+    int x = 0;
+    int c = 0;
+    
+    for(long long int i = 1; i <= num; i++){
+        if(val % i == 0){
+            a->array[x] = i;
+            if ((i/* val/i */)==a->s[c])
+            {
+                for ( i = c-1; i > 0; i--) //add the remaining half
+                {
+                    a->array[x] = a->s[c];
+                    x++;
+                    c--;
+                }
+                break;
+            }else
+            {
+                c++;
+                a->s[c] = val / i;
+            }
+            x++;
+        }
+    }
+    return NULL;
+}
