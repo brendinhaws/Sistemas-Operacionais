@@ -1,39 +1,50 @@
+/*
+    Programa       : decisaoRaizes.c
+    Versão         : 
+    Descrição      : Usuário pode inserir número para calculo da raiz quadrada pela linha de comando, caso não insira, o código retorna a raiz quadrada do RA.
+    Desenvolvedora : Brenda Silveira Pereira
+    Criado em      : 06/12/2022
+    Atualizado em  : 06/12/2022
+    Comentários    : Utiliza parâmetros de decisão switch e while.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
-float raiz_quadrada_de( float numero );
-float raiz_quadrada_deRA( float numero );
+float squareRoot(float number);
+float squareRootRA(float number);
 
 void sim()
 {
-    float numero;
+    float number;
+
     printf("Insira um n%cmero real n%co negativo: ", 163, 198);
-    scanf("%f", &numero);
-    printf("\nRaiz de %f = %.12f\n", numero, raiz_quadrada_de(numero));
+    scanf("%f", &number);
+    printf("\nRaiz de %f = %.12f\n", number, squareRoot(number));
     printf("\n............................................\n");
 }
 
 void nao()
 {
-   int N = 210017733; /* inteiro positivo dado (a ser lido) */ 
-    int soma; /* soma dos dígitos de N */
-    int digito; /* para armazenar cada digito de N */
+    int N = 210017733; //Positive integer given (to be read)
+    int sum; //Sum of the digits of N
+    int digit; //Store each digit of N
 
     printf("\nRA = 210017733\n");  
     printf("\nN = 2 + 1 + 0 + 0 + 1 + 7 + 7 + 3 + 3\n");
-    soma = 0; /* Inicializacao da soma */
+    sum = 0; //Sum initialization
  
     while (N > 0){
-        digito =  N % 10; /* o digito mais à direita de N é obtido */
-        soma = soma + digito;
-        N = N / 10;  /* N passa a ser o N anterior sem o dígito mais à direita */
+        digit =  N % 10; //The rightmost digit of N is obtained
+        sum = sum + digit;
+        N = N / 10; //N becomes the previous N without the rightmost digit
     }
   
-    printf("\nN = %d\n\n", soma);
+    printf("\nN = %d\n\n", sum);
 
-    int numero = soma;
+    int number = sum;
 
-    printf("Raiz aproximada de %d = %.10f\n", soma, raiz_quadrada_deRA(numero));
+    printf("Raiz aproximada de %d = %.10f\n", sum, squareRootRA(number));
     printf("\n............................................\n");
 }
 
@@ -45,7 +56,7 @@ void sair()
 
 int main()
 {
-    int continuar=1;
+    int run = 1;
 
     do
     {
@@ -55,10 +66,10 @@ int main()
         printf("2. N%co\n", 198);
         printf("0. Sair\n");
 
-        scanf("%d", &continuar);
+        scanf("%d", &run);
         system("cls || clear");
 
-        switch(continuar)
+        switch(run)
         {
             case 1:
                 sim();
@@ -75,33 +86,27 @@ int main()
             default:
                 printf("Digite uma opcao valida\n");
         }
-    } while(continuar);
+    } while(run);
 }
 
-float raiz_quadrada_de( float numero ){	
-    float r = 1;
-	/*: Menor raiz exata aproximada de n */
+float squareRoot(float number)
+{	
+    float r = 1; //Smallest approximate exact root of n
 	
-	while( numero > (r * r) ) r += 1E+0;
-	/*: Calcular a raiz inteira aproximada */
+	while( number > (r * r) ) r += 1E+0; //Calculates the approximate integer root
+	while( number < (r * r) ) r -= 1E-6; //Calculates the root of the approximate fraction
 	
-	while( numero < (r * r) ) r -= 1E-6;
-	/*: Cacular a raiz a fração aproximada */
-	
-	return r;
-	/*: Retorna raiz de n */
+	return r; //Returns root of n
+
 }
 
-float raiz_quadrada_deRA( float numero )
-{	float r = 1;
-	/*: Menor raiz exata aproximada de n */
+float squareRootRA(float number)
+{	
+    float r = 1; //Smallest approximate exact root of n
 	
-	while( numero > (r * r) ) r += 1E+0;
-	/*: Calcular a raiz inteira aproximada */
+	while(number > (r * r) ) r += 1E+0; //Calculates the approximate integer root
+	while(number < (r * r) ) r -= 1E-6; //Calculates the root of the approximate fraction
 	
-	while( numero < (r * r) ) r -= 1E-6;
-	/*: Cacular a raiz a fração aproximada */
+    return r; //Returns root of n
 	
-	return r;
-	/*: Retorna raiz de n */
 }
